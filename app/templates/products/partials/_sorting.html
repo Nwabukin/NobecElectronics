@@ -1,0 +1,19 @@
+<form method="GET" action="{{ url_for('products.all_products') }}" class="sorting-form"> 
+    <div class="row align-items-center">
+        <div class="col-auto">
+            <label for="sort_by" class="form-label">Sort by:</label>
+        </div>
+        <div class="col-auto">
+            <select class="form-select" id="sort_by" name="sort_by">
+                <option value="name_asc" {% if sort_by == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
+                <option value="name_desc" {% if sort_by == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
+                <option value="price_asc" {% if sort_by == 'price_asc' %}selected{% endif %}>Price (Low to High)</option>
+                <option value="price_desc" {% if sort_by == 'price_desc' %}selected{% endif %}>Price (High to Low)</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Sort</button>
+        </div>
+    </div>
+</form>
+

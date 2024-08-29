@@ -1,0 +1,92 @@
+<header>
+    <div class="topbar py-2 d-none d-md-block"> 
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-sm-8 col-md-6 text-sm">
+                    <div class="site-info">
+                        <a href="tel:{{ config['PHONE_NUMBER'] }}">
+                            <span class="mai-call text-primary"></span> {{ config['PHONE_NUMBER'] }}
+                        </a>
+                        <span class="divider d-none d-md-inline">|</span>
+                        <a href="mailto:{{ config['CONTACT_EMAIL'] }}" class="d-none d-md-inline">
+                            <span class="mai-mail text-primary"></span> {{ config['CONTACT_EMAIL'] }}
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-6 text-right text-sm">
+                    <div class="social-mini-button">
+                        <a href="{{ config['FACEBOOK_URL'] }}" target="_blank"><span class="mai-logo-facebook-f"></span></a>
+                        <a href="{{ config['WHATSAPP_URL'] }}" target="_blank"><span class="mai-logo-whatsapp"></span></a>
+                        <a href="{{ config['INSTAGRAM_URL'] }}" target="_blank"><span class="mai-logo-instagram"></span></a>
+                    </div>
+                </div>
+            </div> 
+        </div> 
+    </div> 
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+        <div class="container d-flex justify-content-between align-items-center"> 
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupport" aria-controls="navbarSupport" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand ms-2" href="{{ url_for('main.home') }}">
+                <span class="text-primary">Nobec</span> Electronics
+            </a>
+            <div class="collapse navbar-collapse flex-grow-0" id="navbarSupport">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'main.home' %}active{% endif %}" href="{{ url_for('main.home') }}">
+                            <i class="fas fa-home me-2"></i> Home
+                        </a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'products.all_products' %}active{% endif %}" href="{{ url_for('products.all_products') }}">
+                            <i class="fas fa-shopping-bag me-2"></i> Shop
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="infoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-info-circle me-2"></i> Info
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="infoDropdown">
+                            <li><a class="dropdown-item" href="{{ url_for('main.about') }}"><i class="fas fa-building me-2"></i> About</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('main.contact') }}"><i class="fas fa-envelope me-2"></i> Contact</a></li>
+                        </ul>
+                    </li>
+                     {% if current_user.is_authenticated %}
+                        {% if current_user.is_admin %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('admin.index') }}"><i class="fas fa-user-cog"></i> Admin</a>
+                            </li>
+                        {% endif %}
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user"></i> {{ current_user.username }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="{{ url_for('auth.dashboard') }}"><i class="fas fa-tachometer-alt me-2"></i> Dashboard</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user"></i> Account
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="{{ url_for('auth.login') }}"><i class="fas fa-sign-in-alt me-2"></i> Login</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('auth.register') }}"><i class="fas fa-user-plus me-2"></i> Register</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'cart.view_cart' %}active{% endif %}" href="{{ url_for('cart.view_cart') }}">
+                            <i class="fas fa-shopping-cart"></i> Cart
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

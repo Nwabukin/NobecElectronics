@@ -1,0 +1,497 @@
+/* General Styles */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa; /* Light background color */
+}
+
+.card {
+    border: none;  /* Remove default card border */
+    border-radius: 15px; /* More rounded corners */
+}
+
+.card-header {
+    background-color: #007bff; /* Primary color */
+    color: white;
+}
+
+/* Form Styles */
+.form-label {
+    font-weight: bold; 
+}
+
+.topbar {
+            background-color: #f8f9fa;
+            padding: 0.5rem 0;
+        }
+        .topbar a {
+            /* color: #333; */
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        .topbar a:last-child {
+            margin-right: 0;
+        }
+        .topbar i {
+            margin-right: 0.25rem;
+        }
+        @media (max-width: 767.98px) {
+            .topbar .site-info,
+            .topbar .social-mini-button {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .topbar .site-info a,
+            .topbar .social-mini-button a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: #e9ecef;
+                transition: background-color 0.3s ease;
+            }
+            .topbar .site-info a:hover,
+            .topbar .social-mini-button a:hover {
+                background-color: #dee2e6;
+            }
+            .topbar .site-info span.text,
+            .topbar .social-mini-button span.text {
+                display: none;
+            }
+        }
+        .navbar {
+            padding: 0.5rem 1rem;
+        }
+        .navbar-brand {
+            margin-right: 0;
+        }
+        .navbar-nav {
+            width: 100%;
+        }
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: white;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                z-index: 1000;
+            }
+            .navbar-nav {
+                padding: 1rem;
+            }
+            .navbar-nav .nav-item {
+                margin-bottom: 0.5rem;
+            }
+        }
+
+
+/* Section Styling */
+.ftco-section {
+    padding-top: 3rem;  
+    padding-bottom: 3rem; 
+}
+
+/* homepage styles */
+.hero-wrap {
+    /* Adjust background properties as needed */
+    background-size: cover; 
+    background-position: center; 
+    min-height: 100vh;        
+    display: flex;            
+    align-items: center;      
+    justify-content: center; 
+}
+
+.hero-content {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background for better readability */
+    padding: 2rem;
+    border-radius: 10px; /* Rounded corners */
+}
+
+.hero-content h1 {
+    font-weight: bold;
+}
+
+.hero-content .btn-primary {
+    border-radius: 30px;  /* More rounded button */
+    padding: 1rem 2rem;   /* Larger padding for the button */
+}
+
+
+/* Category Card Styling */
+.category-card {
+    transition: transform 0.3s ease; /* Add a smooth transition for hover effect */
+}
+
+.category-card:hover {
+    transform: translateY(-5px); /* Lift the card slightly on hover */
+}
+
+.category-card .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent black overlay */
+    opacity: 0;          /* Hidden by default */
+    transition: opacity 0.3s ease; 
+}
+
+.category-card:hover .overlay {
+    opacity: 1;          /* Show overlay on hover */
+}
+
+/* Other styles for buttons, text, etc. */
+.category-card .btn-primary {
+    border-radius: 5px;
+    background-color: #044939; /* Green */
+    border-color: #044939;
+    color: #fff;
+}
+
+.category-card .btn-primary:hover {
+    background-color: #fff; /* White on hover */
+    color: #013025; /* Blue text on hover */
+    border: 1px solid #013025;
+}
+
+
+/* Product Card Styling */
+.product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smoother transitions */
+    border: none; /* Remove default card border */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.product-card:hover {
+    transform: translateY(-8px); /* More lift on hover */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Deeper shadow */
+}
+
+.product-card img {
+    transition: transform 0.3s ease; /* Image zoom on hover */
+}
+
+.product-card:hover img {
+    transform: scale(1.1);
+}
+
+.product-card .card-body {
+    display: flex; /* Enable flexbox for the card body */
+    flex-direction: column; /* Make content stack vertically */
+}
+
+.product-card .card-text {
+    flex-grow: 1; /* Allow the description to expand and take up available space */
+}
+
+.product-card .card-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Add to Cart Button */
+.product-card .btn-primary {
+    border-radius: 5px;
+    background-color: #044939; /* Blue */
+    border-color: #044939;
+    color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.product-card .btn-primary:hover {
+    background-color: #fff; /* White on hover */
+    color: #013025; /* Blue text on hover */
+    border: 1px solid #013025;
+}
+
+/* Wishlist Button */
+.wishlist-btn {
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    transition: color 0.3s ease;
+    padding: 0.5rem; /* Added padding to the wishlist button */
+}
+
+.wishlist-btn:hover {
+    color: #dc3545; 
+}
+
+/* Out of Stock Badge */
+.out-of-stock-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10; /* Ensure badge is on top */
+}
+
+
+.pagination {
+    margin-top: 2rem; /* Adjust the margin as needed */
+}
+
+.pagination .page-link {
+    border-radius: 0; /* Make pagination links square */
+    border: none;      /* Remove default border */
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #044939; /* Primary color for active page */
+    color: white;
+}
+
+/* Filter styles */
+.filter-form .card-header {
+    background-color: #044939;
+    border-bottom: none; /* Remove the default border below the header */
+}
+
+.filter-form .list-group-item {
+    border: none; /* Remove default border from list items */
+    cursor: pointer; /* Change cursor to indicate clickability */
+}
+
+.filter-form .list-group-item:hover {
+    background-color: #f8f9fa; /* Add a subtle hover background color */
+}
+
+#categoryCollapse { /* Make the categories list scrollable when it's long */
+    max-height: 300px; /* Adjust the height as needed */
+    overflow-y: auto;
+}
+
+/* sorting styles */
+.sorting-form .form-select {
+    min-width: 200px; /* Adjust the width as needed */
+}
+
+.sorting-form .btn-primary {
+    background-color: #044939; /* Blue */
+    border-color: #044939;
+    color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sorting-form .btn-primary:hover {
+    background-color: #fff; /* White on hover */
+    color: #044939; /* Blue text on hover */
+    border: 1px solid #044939;
+}
+
+
+/* Cart Styles */
+.table th, .table td {
+    vertical-align: middle; /* Vertically align content in table cells */
+}
+
+.img-thumbnail {
+    border-radius: 10px; /* Round the image corners */
+}
+
+
+/* About Section */
+.about-section {
+    background-color: #f8f9fa; /* Light background color */
+}
+
+.about-section .about-content {
+    padding: 2rem; /* Add padding around the content */
+}
+
+.about-section .about-image-container { /* New container for about image */
+    width: 100%;  /* Make the container take full width */
+    overflow: hidden;
+}
+
+.about-section .about-image-container img { /* Style the image within the container */
+    width: 100%;
+    height: auto;
+    object-fit: cover;  
+}
+
+.about-section h2 {
+    font-weight: bold;
+    color: #333;  /* Darker heading color */
+}
+
+.about-section .lead {
+    font-size: 1.1rem;  /* Slightly larger lead text */
+}
+
+/* Mission Section */
+.mission-section {
+    background-color: #f8f9fa; /* Or your preferred light background color */
+}
+
+.mission-section h2 {
+    font-weight: bolder; /* Bolder heading */
+}
+.mission-card {
+    border: none; /* Remove default card border */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transitions */
+}
+
+.mission-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1); /* Increase shadow on hover */
+}
+
+/* Team Section */
+.team-section {
+    background-color: #f8f9fa;
+}
+
+.team-section .team-image-container { /* New container for team image */
+    width: 100%;
+    overflow: hidden;
+}
+
+.team-section .team-image-container img { /* Style the image within the container */
+    width: 100%;
+    height: auto;
+    object-fit: cover;  
+}
+
+.team-member .card-img-top {
+    overflow: hidden;
+}
+
+.team-member img {
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover img {
+    transform: scale(1.1);
+}
+
+.team-member-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-member:hover .team-member-overlay {
+    opacity: 1;
+}
+
+.team-member-social-icons a {
+    display: inline-block;
+    margin: 0 10px;
+    color: #fff; /* Social icon color */
+    font-size: 1.2rem;
+}
+
+
+/* Contact Section */
+.contact-section {
+    background-color: #f8f9fa;
+}
+
+.contact-section h2 {
+    font-weight: bolder;
+}
+
+.contact-form .form-control {
+    border-radius: 8px;
+}
+
+.contact-form .btn-primary {
+    background-color: #044939;
+    border-color: #044939;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form .btn-primary:hover {
+    background-color: #044939;
+}
+
+.contact-info {
+    padding: 2rem; /* Add padding around the content */
+}
+
+.contact-info .icon-box {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-info .text h5 {
+    color: #333; /* Darker heading color */
+}
+
+.social-icons a {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 1.5rem; /* Make icons slightly larger */
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #044939; /* Primary color on hover */
+}
+
+
+/* Dashboard */
+.dashboard .card-header {
+    border-bottom: none; /* Remove default border */
+}
+
+.dashboard .list-group-item {
+    border-color: #dee2e6; /* Light border color */
+}
+
+
+/* Edit Profile Styles */
+.profile-picture {
+    width: 150px; /* Adjust the width as needed */
+    height: 150px; /* Adjust the height as needed */
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+}
+
+
+/* Cart Page Styles */
+
+.cart-item-name{
+  font-weight: bold;
+}
+.cart-item .btn-danger {
+    background-color: transparent; 
+    color: #dc3545;     
+    border: none;
+}
+
+
+/* Order Summary Card */
+.order-summary .card-header {
+    background-color: #f5f5f5; /* Light gray background */
+    border-bottom: 1px solid #dee2e6; /* Light gray border */
+}
+
+.order-summary .list-group-item {
+    background-color: transparent; /* Remove default background */
+    border-bottom: 1px dotted #ccc; /* Dotted border for separation */
+}
+
+.order-summary .list-group-item:last-child {
+    border-bottom: none; /* Remove the border from the last item */
+}
+
+

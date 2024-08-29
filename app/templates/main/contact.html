@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<section class="contact-section py-5">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-8 text-center heading-section ftco-animate">
+                <span class="subheading">Get in Touch</span>
+                <h2>We'd Love to Hear From You</h2>
+                <p>Have a question, feedback, or just want to say hello? Send us a message, and we'll get back to you as soon as possible.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <form method="POST" action="{{ url_for('main.contact') }}" class="contact-form">
+                    {{ form.hidden_tag() }}
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            {{ form.name(class_="form-control", placeholder="Your Name") }}
+                            {% for error in form.name.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            {{ form.email(class="form-control", placeholder="Your Email") }}
+                            {% for error in form.email.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        {{ form.message(class="form-control", placeholder="Your Message", rows="5") }}
+                        {% for error in form.message.errors %}
+                            <div class="text-danger">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="contact-info">
+                    <h3 class="mb-4">Contact Information</h3>
+                    <div class="d-flex align-items-start mb-3">
+                        <div class="icon-box bg-primary rounded-circle me-3">
+                            <i class="fas fa-map-marker-alt text-white"></i>
+                        </div>
+                        <div class="text">
+                            <h5 class="mb-0">Address</h5>
+                            <p>{{ config.get('ADDRESS') }}</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-start mb-3">
+                        <div class="icon-box bg-primary rounded-circle me-3">
+                            <i class="fas fa-phone text-white"></i>
+                        </div>
+                        <div class="text">
+                            <h5 class="mb-0">Phone</h5>
+                            <p>{{ config.get('PHONE_NUMBER') }}</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-start mb-5">
+                        <div class="icon-box bg-primary rounded-circle me-3">
+                            <i class="fas fa-envelope text-white"></i>
+                        </div>
+                        <div class="text">
+                            <h5 class="mb-0">Email</h5>
+                            <p>{{ config.get('CONTACT_EMAIL') }}</p>
+                        </div>
+                    </div>
+
+                    <h5 class="mb-3">Follow Us</h5>
+                    <div class="social-icons">
+                        <a href="{{ config.get('FACEBOOK_URL') }}" target="_blank" class="social-icon text-decoration-none">
+                            <i class="fab fa-facebook-f fa-1x"></i>
+                        </a>
+                        <a href="{{ config.get('TWITTER_URL') }}" target="_blank" class="social-icon text-decoration-none">
+                            <i class="fab fa-twitter fa-1x"></i>
+                        </a>
+                        <a href="{{ config.get('INSTAGRAM_URL') }}" target="_blank" class="social-icon text-decoration-none">
+                            <i class="fab fa-instagram fa-1x"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

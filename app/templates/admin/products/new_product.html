@@ -1,0 +1,76 @@
+{% extends 'admin/layout.html' %}
+{% block admin_content %}
+
+<div class="container mt-5">
+  <h2 class="mb-4">{% if product %}Edit Product{% else %}Add New Product{% endif %}</h2>
+
+  <form method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          {{ form.name.label(class="form-label") }}
+          {{ form.name(class="form-control", value=product.name if product else '') }}
+          {% for error in form.name.errors %}
+          <div class="invalid-feedback">{{ error }}</div>
+          {% endfor %}
+        </div>
+
+        <div class="mb-3">
+          {{ form.price.label(class="form-label") }}
+          {{ form.price(class="form-control", value=product.price if product else '') }}
+          {% for error in form.price.errors %}
+          <div class="invalid-feedback">{{ error }}</div>
+          {% endfor %}
+        </div>
+
+        <div class="mb-3">
+          {{ form.stock.label(class="form-label") }}
+          {{ form.stock(class="form-control", value=product.stock if product else '') }}
+          {% for error in form.stock.errors %}
+          <div class="invalid-feedback">{{ error }}</div>
+          {% endfor %}
+        </div>
+
+        <div class="mb-3">
+          {{ form.category.label(class="form-label") }}
+          {{ form.category(class="form-select") }}
+          {% for error in form.category.errors %}
+          <div class="invalid-feedback">{{ error }}</div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="mb-3">
+          {{ form.image.label(class="form-label") }}
+          {{ form.image(class="form-control") }}
+          {% for error in form.image.errors %}
+          <div class="invalid-feedback">{{ error }}</div>
+          {% endfor %}
+          {% if product and product.image_url %}
+          <div class="mt-3">
+            Current Image:
+            <img src="{{ url_for('static', filename='uploads/products/' + product.image_url) }}" class="img-thumbnail" width="150">
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="mb-3">
+          {{ form.description.label(class="form-label") }}
+          {{ form.description(class="form-control", rows="5", value=product.description if product else '') }}
+          {% for error in form.description.errors %}
+          <div class="invalid-feedback">{{ error }}</div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="d-grid">
+      <button type="submit" class="btn btn-primary">{% if product %}Save Changes{% else %}Add Product{% endif %}</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

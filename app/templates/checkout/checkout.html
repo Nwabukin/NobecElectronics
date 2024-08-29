@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+{% block title %}Checkout{% endblock %}
+{% block content %}
+
+<div class="container my-5">
+    <h2 class="mb-4 text-center display-5">Checkout</h2>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form method="POST" action="{{ url_for('checkout.checkout_process') }}">
+                {{ form.hidden_tag() }}
+
+                <div class="card shadow-lg mb-4">
+                    <div class="card-header bg-light">
+                        <h3 class="mb-0">Shipping Information</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.shipping_first_name.label(class="form-label") }}
+                                {{ form.shipping_first_name(class="form-control") }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.shipping_last_name.label(class="form-label") }}
+                                {{ form.shipping_last_name(class="form-control") }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            {{ form.shipping_address.label(class="form-label") }}
+                            {{ form.shipping_address(class="form-control") }}
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.shipping_city.label(class="form-label") }}
+                                {{ form.shipping_city(class="form-control") }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.shipping_state.label(class="form-label") }}
+                                {{ form.shipping_state(class="form-control") }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.shipping_postal_code.label(class="form-label") }}
+                                {{ form.shipping_postal_code(class="form-control") }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.shipping_country.label(class="form-label") }}
+                                {{ form.shipping_country(class="form-control") }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-light">
+                        <h3 class="mb-0">Billing Information</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-check mb-3">
+                            {{ form.same_as_shipping(class="form-check-input", id="sameAsShipping") }}
+                            <label class="form-check-label" for="sameAsShipping">Same as shipping address</label>
+                        </div>
+                        <div id="billingAddressFields">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form.billing_first_name.label(class="form-label") }}
+                                    {{ form.billing_first_name(class="form-control") }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.billing_last_name.label(class="form-label") }}
+                                    {{ form.billing_last_name(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                {{ form.billing_address.label(class="form-label") }}
+                                {{ form.billing_address(class="form-control") }}
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form.billing_city.label(class="form-label") }}
+                                    {{ form.billing_city(class="form-control") }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.billing_state.label(class="form-label") }}
+                                    {{ form.billing_state(class="form-control") }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    {{ form.billing_postal_code.label(class="form-label") }}
+                                    {{ form.billing_postal_code(class="form-control") }}
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    {{ form.billing_country.label(class="form-label") }}
+                                    {{ form.billing_country(class="form-control") }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-light">
+                        <h3 class="mb-0">Payment Method</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            {% for subfield in form.payment_method %}
+                            <div class="form-check">
+                                {{ subfield(class="form-check-input") }}
+                                {{ subfield.label(class="form-check-label") }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-light">
+                        <h3 class="mb-0">Order Review</h3>
+                    </div>
+                    <div class="card-body">
+                        {% for item in cart_items %}
+                        <div class="d-flex justify-content-between">
+                            <span>{{ item.product.name }} x {{ item.quantity }}</span>
+                            <span>₦{{ '{:,.2f}'.format(item.price) }}</span>
+                        </div>
+                        {% endfor %}
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <strong>Total:</strong>
+                            <strong>₦{{ '{:,.2f}'.format(total_price) }}</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    {{ form.order_notes.label(class="form-label") }}
+                    {{ form.order_notes(class="form-control", rows="3", placeholder="Add order notes (optional)") }}
+                </div>
+
+                {{ form.submit(class="btn btn-primary btn-lg w-100", value="Place Order") }}
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var sameAsShippingCheckbox = document.getElementById('same_as_shipping');
+        var billingFields = document.getElementById('billingAddressFields');
+        var paymentMethods = document.querySelectorAll('.payment-method');
+        var paymentDetails = document.getElementById('paymentDetails');
+
+        function toggleBillingFields() {
+            if (sameAsShippingCheckbox.checked) {
+                billingFields.style.display = 'none';
+            } else {
+                billingFields.style.display = 'block';
+            }
+        }
+
+        function handlePaymentMethodChange(event) {
+            var selectedMethod = event.target.value;
+            paymentDetails.style.display = 'block';
+            paymentDetails.innerHTML = getPaymentDetailsHTML(selectedMethod);
+        }
+
+        function getPaymentDetailsHTML(method) {
+            switch (method) {
+                case 'Bank Transfer':
+                    return `
+                        <div class="alert alert-info">
+                            Please use the following bank details for your transfer:
+                            <br>Bank Name: Example Bank
+                            <br>Account Number: 1234567890
+                            <br>Sort Code: 12-34-56
+                        </div>
+                    `;
+                case 'Cash on Delivery':
+                    return `
+                        <div class="alert alert-info">
+                            You will pay in cash when your order is delivered.
+                        </div>
+                    `;
+                default:
+                    return '';
+            }
+        }
+
+        sameAsShippingCheckbox.addEventListener('change', toggleBillingFields);
+        paymentMethods.forEach(method => {
+            method.addEventListener('change', handlePaymentMethodChange);
+        });
+
+        // Initial state
+        toggleBillingFields();
+    });
+</script>
+{% endblock %}
